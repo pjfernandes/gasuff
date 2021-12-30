@@ -1,18 +1,18 @@
 .footer {
-  background: $navy;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100px;
   padding: 0px 50px;
-  color: $white;
+  color: $navy;
 }
 .footer-links {
   display: flex;
   align-items: center;
 }
 .footer-links a {
-  color: white;
+  color: $navy;
   opacity: 0.6;
   text-decoration: none;
   font-size: 24px;
