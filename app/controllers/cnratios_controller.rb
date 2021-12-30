@@ -1,0 +1,2 @@
+class CnratiosController < ApplicationController
+end

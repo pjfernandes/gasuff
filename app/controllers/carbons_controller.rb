@@ -1,0 +1,2 @@
+class CarbonsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class SedimentsController < ApplicationController
+end

@@ -1,0 +1,2 @@
+class MethanesController < ApplicationController
+end
