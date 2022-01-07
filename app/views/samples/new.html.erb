@@ -1,0 +1,14 @@
+<h2 class="page-title text-center mt-4"><i class="fas fa-vial text-primary"></i> Cadastrar amostra</h2>
+
+<%= simple_form_for [@sample] do |f| %>
+    <%= f.input :latitude, label: "Latitude" %>
+    <%= f.input :longitude, label: "Longitude" %>
+    <%= f.input :class_sample, label: "Tipo" %>
+    <%= f.association :researcher, label: "Pesquisador" %>
+    <%= f.input :date_sample, label: "Data de coleta", :order => [:day, :month, :year], as: :date %>
+    <%= f.input :date_analysis, label: "Data de análise", :order => [:day, :month, :year], as: :date %>
+    <%= f.input :equipment, label: "Equipamento" %>
+
+    <%= f.button :submit, "Salvar", class: "btn-primary text-center" %>
+    <%= link_to 'Voltar', samples_path, class:"btn btn-danger mt-2 ml-2 mb-2" %>
+<% end %>

@@ -77,11 +77,11 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
   create_table "samples", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "researcher_id", null: false
-    t.string "type"
+    t.string "class_sample"
     t.float "latitude"
     t.float "longitude"
-    t.string "date_sample"
-    t.string "date_analysis"
+    t.date "date_sample"
+    t.date "date_analysis"
     t.string "equipment"
     t.string "local_name"
     t.datetime "created_at", precision: 6, null: false
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
 
   create_table "sediments", force: :cascade do |t|
     t.bigint "sample_id", null: false
-    t.string "type_sediment"
+    t.string "class_sediment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["sample_id"], name: "index_sediments_on_sample_id"

@@ -18,22 +18,16 @@ class SamplesController < ApplicationController
   end
 
   def new
-    if current_user.admin?
-      @sample = Sample.new
-    else
-      redirect_to root_path
-    end
+    @sample = Sample.new
   end
 
   def create
-    if current_user.admin?
-      @sample = Sample.new(sample_params)
-      @sample.user = current_user
-      if @sample.save
-        redirect_to sample_path(@sample), notice: 'Amostra cadastrada com sucesso!'
-      else
-        render :new
-      end
+    @sample = Sample.new(sample_params)
+    @sample.user = current_user
+    if @sample.save
+      redirect_to sample_path(@sample), notice: 'Amostra cadastrada com sucesso!'
+    else
+      render :new
     end
   end
 
@@ -46,24 +40,14 @@ class SamplesController < ApplicationController
   end
 
   def update
-    if current_user.admin?
-      @sample = Sample.find(params[:id])
-      @sample.user = current_user
-      @sample.update(sample_params)
-      redirect_to sample_path(@sample)
-    end
-  end
-
-  def destroy
-    if current_user.admin?
-      @sample = Sample.find(params[:id])
-      @sample.destroy
-      redirect_to samples_path
-    end
+    @sample = Sample.find(params[:id])
+    @sample.user = current_user
+    @sample.update(sample_params)
+    redirect_to sample_path(@sample)
   end
 
   private
   def sample_params
-    params.require(:sample).permit(:title, :content, :legend, :user_id, :photo)
+    params.require(:sample).permit(:latitude, :longitude, :class_sample, :researcher, :date_sample, :date_analysis, :equipment, :user)
   end
 end
