@@ -3,6 +3,14 @@ class SamplesController < ApplicationController
 
   def index
     @samples = Sample.all
+
+    @markers = @samples.map do |sample|
+      {
+        lat: sample.latitude,
+        lng: sample.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { sample: sample })
+      }
+    end
   end
 
   def show
