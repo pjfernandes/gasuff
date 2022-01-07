@@ -4,7 +4,7 @@
     <%= f.input :latitude, label: "Latitude" %>
     <%= f.input :longitude, label: "Longitude" %>
     <%= f.input :class_sample, label: "Tipo" %>
-    <%= f.association :researcher, label: "Pesquisador" %>
+    <%= f.association :researcher, :label_method => lambda { |researcher| "#{researcher.first_name.capitalize} #{researcher.last_name.capitalize}" }, collection: Researcher.all.order(:first_name), label: "Pesquisador" %>
     <%= f.input :date_sample, label: "Data de coleta", :order => [:day, :month, :year], as: :date %>
     <%= f.input :date_analysis, label: "Data de análise", :order => [:day, :month, :year], as: :date %>
     <%= f.input :equipment, label: "Equipamento" %>

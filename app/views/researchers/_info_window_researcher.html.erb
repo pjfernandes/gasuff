@@ -2,6 +2,6 @@
   <p class="text-center text-dark"><strong><i class="fas fa-info-circle text-primary"></i> <%=link_to "#{researcher.first_name.capitalize} #{researcher.last_name.capitalize}", researcher_path(researcher)%></strong></p>
 </div>
 <div class="text-center text-dark mt-1">
-  <p><%=researcher.institution.upcase%></p>
-  <p><%=researcher.email%></p>
+  <p><i class="page-title fas fa-university text-primary"></i> <%=researcher.institution.upcase%></p>
+  <p><i class="page-title fas fas fa-envelope text-primary"></i> <%=researcher.email%></p>
 </div>

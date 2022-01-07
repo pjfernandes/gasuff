@@ -25,7 +25,7 @@ class SamplesController < ApplicationController
     @sample = Sample.new(sample_params)
     @sample.user = current_user
     if @sample.save
-      redirect_to sample_path(@sample), notice: 'Amostra cadastrada com sucesso!'
+      redirect_to samples_path, notice: 'Amostra cadastrada com sucesso!'
     else
       render :new
     end
@@ -48,6 +48,6 @@ class SamplesController < ApplicationController
 
   private
   def sample_params
-    params.require(:sample).permit(:latitude, :longitude, :class_sample, :researcher, :date_sample, :date_analysis, :equipment, :user)
+    params.require(:sample).permit(:latitude, :longitude, :class_sample, :researcher_id, :date_sample, :date_analysis, :equipment, :user)
   end
 end
