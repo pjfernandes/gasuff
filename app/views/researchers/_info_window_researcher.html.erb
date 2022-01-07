@@ -1,0 +1,7 @@
+<div class="border-bottom">
+  <p class="text-center text-dark"><strong><i class="fas fa-info-circle text-primary"></i> <%=link_to "#{researcher.first_name.capitalize} #{researcher.last_name.capitalize}", researcher_path(researcher)%></strong></p>
+</div>
+<div class="text-center text-dark mt-1">
+  <p><%=researcher.institution.upcase%></p>
+  <p><%=researcher.email%></p>
+</div>

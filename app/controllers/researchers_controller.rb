@@ -2,6 +2,13 @@ class ResearchersController < ApplicationController
 
   def index
     @researchers = Researcher.all
+     @markers = @researchers.map do |researcher|
+      {
+        lat: researcher.latitude.round(3)+(rand()/100),
+        lng: researcher.longitude.round(3)+(rand()/100),
+        info_window: render_to_string(partial: "info_window_researcher", locals: { researcher: researcher })
+      }
+    end
   end
 
   def show

@@ -1,0 +1,13 @@
+<h2 class="page-title text-center mt-4"><i class="fas fa-user-graduate text-primary"></i> <%=@researcher.first_name.capitalize%> <%=@researcher.last_name.capitalize%></h2>
+
+<div class="d-flex justify-content-center">
+  <div class="researcher-info text-center bg-light border rounded mt-3 w-50">
+    <p><i class="page-title fas fa-university text-primary mt-3"></i> <%=@researcher.institution.upcase%>
+    <p><i class="page-title fas fa-city text-primary"></i> <%=@researcher.city.capitalize%></p>
+    <p><i class="page-title fas fa-globe-americas text-primary"></i> <%=@researcher.nation.capitalize%></p>
+    <p><i class="page-title fas fas fa-envelope text-primary mb-2"></i> <%=@researcher.email%></p>
+  </div>
+</div>
+<div class="text-center">
+  <%= link_to 'Voltar', researchers_path, class:"btn btn-danger mt-3 ml-2 mb-2" %>
+</div>
