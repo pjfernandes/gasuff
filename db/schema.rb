@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_180400) do
     t.string "last_name"
     t.string "institution"
     t.string "city"
-    t.string "country"
+    t.string "nation"
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2021_12_30_180400) do
 
   create_table "sediments", force: :cascade do |t|
     t.bigint "sample_id", null: false
-    t.string "type"
+    t.string "type_sediment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["sample_id"], name: "index_sediments_on_sample_id"

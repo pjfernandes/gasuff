@@ -5,7 +5,7 @@ class CreateResearchers < ActiveRecord::Migration[6.0]
       t.string :last_name
       t.string :institution
       t.string :city
-      t.string :country
+      t.string :nation
       t.string :email
 
       t.timestamps

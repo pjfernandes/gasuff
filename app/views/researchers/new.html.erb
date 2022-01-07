@@ -1,0 +1,14 @@
+<h2 class="page-title text-center mt-4"><i class="fas fa-user-graduate text-primary"></i> Cadastrar pesquisador</h2>
+
+<%= simple_form_for(@researcher) do |f| %>
+    <%= f.hidden_field :researcher_id, value: params[:researcher_id] %>
+    <%= f.input :first_name, label: "Nome" %>
+    <%= f.input :last_name, label: "Sobrenome" %>
+    <%= f.input :email, label: "E-mail" %>
+    <%= f.input :institution, label: "Instituição" %>
+    <%= f.input :city, label: "Cidade" %>
+    <%= f.input :nation, label: "País" %>
+
+    <%= f.button :submit, "Salvar", class: "btn-primary text-center" %>
+    <%= link_to 'Voltar', :back, class:"btn btn-danger mt-2 ml-2 mb-2" %>
+<% end %>
