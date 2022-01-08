@@ -2,5 +2,7 @@
   <p class="text-center text-dark"><strong><i class="fas fa-info-circle text-primary"></i> Detalhes</strong></p>
 </div>
 <div class="text-left text-dark mt-2">
-  <p><strong>Data:</strong> <%=sample.date_sample%></p>
+  <p><i class="page-title fas fa-calendar text-primary"></i> <strong>Data:</strong> <%=sample.date_sample%></p>
+  <p><i class="page-title fas fa-vial text-primary"></i> <strong>Tipo:</strong> <%=sample.class_sample%></p>
+  <p><i class="page-title fas fa-user-graduate text-primary"></i> <strong>Pesquisador:</strong> <%=sample.researcher.first_name.capitalize%> <%=sample.researcher.last_name.capitalize%></p>
 </div>
