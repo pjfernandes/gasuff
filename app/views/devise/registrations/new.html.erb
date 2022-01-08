@@ -1,24 +1,37 @@
-<h2>Sign up</h2>
+<h2 class="page-title text-center mt-4 mb-3"><i class="fas fa-user-plus text-primary"></i> Novo usuário</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :first_name,
+                required: true,
+                autofocus: true,
+                label: "Nome",
+                input_html: { autocomplete: "nome" }%>
+    <%= f.input :last_name,
+                required: true,
+                autofocus: true,
+                label: "Sobrenome",
+                input_html: { autocomplete: "sobrenome" }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
+                label: "E-mail",
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
                 required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                label: "Senha",
+                hint: ("Mínimo: #{@minimum_password_length} caracteres" if @minimum_password_length),
                 input_html: { autocomplete: "new-password" } %>
     <%= f.input :password_confirmation,
+                label: "Confirmação da senha",
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Cadastrar", class:"btn btn-primary mb-2" %>
   </div>
 <% end %>
 
