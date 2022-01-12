@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
   create_table "methanes", force: :cascade do |t|
     t.bigint "sample_id", null: false
     t.float "concentration"
+    t.float "ph"
+    t.float "temperature"
+    t.float "salinity"
+    t.float "pressure"
     t.string "method"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -67,6 +71,13 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
     t.float "salinity"
     t.float "pressure"
     t.string "method"
+    t.float "p_total"
+    t.float "cinorg"
+    t.float "c_total"
+    t.float "calcidif"
+    t.float "n_total"
+    t.float "delta_13c"
+    t.float "delta_15n"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["researcher_id"], name: "index_samples_on_researcher_id"

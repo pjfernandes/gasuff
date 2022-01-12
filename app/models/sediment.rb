@@ -1,3 +1,3 @@
 class Sediment < Sample
-  belongs_to :sample
+  #belongs_to :sample
 end

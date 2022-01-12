@@ -3,6 +3,10 @@ class CreateMethanes < ActiveRecord::Migration[6.0]
     create_table :methanes do |t|
       t.references :sample, null: false, foreign_key: true
       t.float :concentration
+      t.float :ph
+      t.float :temperature
+      t.float :salinity
+      t.float :pressure
       t.string :method
 
       t.timestamps

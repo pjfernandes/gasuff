@@ -1,15 +1,15 @@
 <h2 class="page-title text-center mt-4"><i class="fas fa-vial text-primary"></i> Cadastrar amostra</h2>
 
 <div class="buttons text-center">
-  <button type="button" class = "btn btn-secondary btn-lg mr-2 mt-2" disabled>CO2</button>
-  <%=link_to "CH4", new_methane_path, class: "btn btn-primary btn-lg mr-2 mt-2" %>
+  <%=link_to "CO2", new_carbon_path, class: "btn btn-primary btn-lg mr-2 mt-2" %>
+  <button type="button" class = "btn btn-secondary btn-lg mr-2 mt-2" disabled>CH4</button>
   <%=link_to "Sedimento", new_sediment_path, class: "btn btn-primary btn-lg mr-2 mt-2" %>
 </div>
 
-<%= simple_form_for [@carbon] do |f| %>
+<%= simple_form_for [@methane] do |f| %>
     <%= f.input :latitude, label: "Latitude" %>
     <%= f.input :longitude, label: "Longitude" %>
-    <%= f.input :class_sample, label: false, input_html: { value: 'CO2', hidden: true } %>
+    <%= f.input :class_sample, label: false, input_html: { value: 'CH4', hidden: true } %>
     <%= f.association :researcher, :label_method => lambda { |researcher| "#{researcher.first_name.capitalize} #{researcher.last_name.capitalize}" }, collection: Researcher.all.order(:first_name), label: "Pesquisador" %>
     <%= f.input :date_sample, label: "Data de coleta", :order => [:day, :month, :year], as: :date %>
     <%= f.input :date_analysis, label: "Data da análise", :order => [:day, :month, :year], as: :date %>

@@ -15,6 +15,13 @@ class SamplesController < ApplicationController
 
   def show
     @sample = Sample.find(params[:id])
+    @markers = [
+      {
+        lat: @sample.latitude,
+        lng: @sample.longitude,
+        info_window: render_to_string(partial: "info_location", locals: { sample: @sample })
+      }
+    ]
   end
 
   def new
@@ -48,6 +55,10 @@ class SamplesController < ApplicationController
 
   private
   def sample_params
-    params.require(:sample).permit(:latitude, :longitude, :class_sample, :researcher_id, :date_sample, :date_analysis, :equipment, :user)
+    params.require(:sample).permit(
+      :latitude, :longitude, :class_sample, :researcher_id, :date_sample,
+      :date_analysis, :equipment, :user, :concentration, :ph, :temperature, :salinity,
+      :p_total, :cinorg, :c_total, :calcidif, :n_total, :delta_13c, :delta_15n
+    )
   end
 end

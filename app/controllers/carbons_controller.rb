@@ -10,7 +10,6 @@ class CarbonsController < ApplicationController
   end
 
   def new
-    @sample = Sample.new
     @carbon = Carbon.new
   end
 

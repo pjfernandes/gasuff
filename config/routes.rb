@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :samples
   resources :researchers
   resources :carbons
+  resources :methanes
+  resources :sediments
 
   resources :researchers do
     resources :samples
