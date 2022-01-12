@@ -12,3 +12,12 @@
 .map{
   overflow: hidden;
 }
+
+body a {
+  color: rgb(171, 171, 171);
+}
+
+body a:hover {
+  color: black;
+  text-decoration: none;
+}
