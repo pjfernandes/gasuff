@@ -10,6 +10,13 @@ class CreateSamples < ActiveRecord::Migration[6.0]
       t.date :date_analysis
       t.string :equipment
       t.string :local_name
+      t.string :type
+      t.float :concentration
+      t.float :ph
+      t.float :temperature
+      t.float :salinity
+      t.float :pressure
+      t.string :method
 
       t.timestamps
     end

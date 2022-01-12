@@ -1,3 +1,3 @@
-class Methane < ApplicationRecord
-  belongs_to :sample
+class Methane < Sample
+  #belongs_to :sample
 end

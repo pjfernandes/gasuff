@@ -28,19 +28,6 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
     t.index ["sample_id"], name: "index_carbons_on_sample_id"
   end
 
-  create_table "cnratios", force: :cascade do |t|
-    t.bigint "sediment_id", null: false
-    t.float "c_total"
-    t.float "calcidif"
-    t.float "n_total"
-    t.float "delta_13c"
-    t.float "delta_15n"
-    t.string "method"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sediment_id"], name: "index_cnratios_on_sediment_id"
-  end
-
   create_table "methanes", force: :cascade do |t|
     t.bigint "sample_id", null: false
     t.float "concentration"
@@ -48,17 +35,6 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["sample_id"], name: "index_methanes_on_sample_id"
-  end
-
-  create_table "psediments", force: :cascade do |t|
-    t.bigint "sediment_id", null: false
-    t.float "p_total"
-    t.float "cinorg"
-    t.float "delta_13c"
-    t.string "method"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sediment_id"], name: "index_psediments_on_sediment_id"
   end
 
   create_table "researchers", force: :cascade do |t|
@@ -84,6 +60,13 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
     t.date "date_analysis"
     t.string "equipment"
     t.string "local_name"
+    t.string "type"
+    t.float "concentration"
+    t.float "ph"
+    t.float "temperature"
+    t.float "salinity"
+    t.float "pressure"
+    t.string "method"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["researcher_id"], name: "index_samples_on_researcher_id"
@@ -92,7 +75,14 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
 
   create_table "sediments", force: :cascade do |t|
     t.bigint "sample_id", null: false
-    t.string "class_sediment"
+    t.float "p_total"
+    t.float "cinorg"
+    t.float "c_total"
+    t.float "calcidif"
+    t.float "n_total"
+    t.float "delta_13c"
+    t.float "delta_15n"
+    t.string "method"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["sample_id"], name: "index_sediments_on_sample_id"
@@ -114,9 +104,7 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
   end
 
   add_foreign_key "carbons", "samples"
-  add_foreign_key "cnratios", "sediments"
   add_foreign_key "methanes", "samples"
-  add_foreign_key "psediments", "sediments"
   add_foreign_key "samples", "researchers"
   add_foreign_key "samples", "users"
   add_foreign_key "sediments", "samples"

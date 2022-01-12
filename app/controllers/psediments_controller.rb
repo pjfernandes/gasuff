@@ -1,2 +1,0 @@
-class PsedimentsController < ApplicationController
-end
