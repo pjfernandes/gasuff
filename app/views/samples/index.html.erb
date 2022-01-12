@@ -17,7 +17,7 @@
     <div class="d-flex align-items-center">
 
       <div class="card-product-infos ml-3 mt-1">
-        <h6><i class="page-title fas fa-flask text-primary"></i> Amostra <%=sample.id%> (<%=sample.class_sample.capitalize%>)</h6>
+        <h6><i class="page-title fas fa-flask text-primary"></i> Amostra <%=sample.id%> (<%=sample.class_sample.upcase%>)</h6>
         <p><i class="page-title fas fa-calendar text-primary"></i> <%=sample.date_sample%></p>
         <p><i class="page-title fas fa-globe-americas text-primary"></i> Lat: <%=sample.latitude%> <strong class="text-primary">-</strong> Long: <%=sample.longitude%></p>
         <p><i class="page-title fas fa-user-graduate text-primary"></i> <%=sample.researcher.first_name.capitalize%> <%=sample.researcher.last_name.capitalize%></p>
