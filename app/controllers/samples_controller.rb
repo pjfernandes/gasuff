@@ -8,9 +8,6 @@ class SamplesController < ApplicationController
       @samples = Sample.includes(:researcher).page(params[:page]).per(50)
     end
 
-    #@samples = Sample
-
-
     @markers = @samples.map do |sample|
       {
         lat: sample.latitude,
