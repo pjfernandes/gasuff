@@ -2,7 +2,14 @@ class SamplesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
-    @samples = Sample.includes(:researcher).page(params[:page]).per(50)
+    if params[:query].present?
+      @samples = Sample.global_search(params[:query]).includes(:researcher).page(params[:page]).per(50)
+    else
+      @samples = Sample.includes(:researcher).page(params[:page]).per(50)
+    end
+
+    #@samples = Sample
+
 
     @markers = @samples.map do |sample|
       {

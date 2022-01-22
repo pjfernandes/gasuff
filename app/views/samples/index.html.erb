@@ -6,8 +6,20 @@
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-<div class="text-center m-4">
-  <%= link_to 'Adicionar amostra', new_sample_path, class:"btn btn-primary btn-sm" %>
+
+<div class="form text-center mt-3">
+  <%= form_tag samples_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Buscar amostras por local, pesquisador, instituição"
+    %>
+    <%= submit_tag "Buscar", class: "btn btn-primary btn-sm text-center mt-2" %>
+    <%= link_to "Deletar busca", request.path, class:"btn btn-primary btn-sm  mt-3 mb-2 ml-2" %>
+    <% if user_signed_in?%>
+      <%= link_to "Adicionar amostra", new_sample_path, class:"btn btn-primary btn-sm mt-3 mb-2 ml-2" %>
+    <%end%>
+  <% end %>
 </div>
 
 

@@ -4,4 +4,14 @@ class Sample < ApplicationRecord
   has_many :carbons
   has_many :methanes
   has_many :sediments
+
+  include PgSearch::Model
+  pg_search_scope :global_search,
+    against: [ :class_sample, :local_name ],
+    associated_against: {
+      researcher: [ :first_name, :last_name, :institution ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 end
