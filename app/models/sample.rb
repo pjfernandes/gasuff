@@ -7,7 +7,7 @@ class Sample < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :global_search,
-    against: [ :class_sample, :local_name ],
+    against: [ :class_sample, :local_name, :equipment, :date_analysis, :date_sample ],
     associated_against: {
       researcher: [ :first_name, :last_name, :institution ]
     },
