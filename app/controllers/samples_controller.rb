@@ -3,11 +3,10 @@ class SamplesController < ApplicationController
 
   def index
     if params[:query].present?
-      @samples = Sample.global_search(params[:query]).includes(:researcher).page(params[:page]).per(30)
+      @samples = Sample.global_search(params[:query]).includes(:researcher).page(params[:page])
     else
       @samples = Sample.includes(:researcher).page(params[:page]).per(30)
     end
-
     @markers = @samples.map do |sample|
       {
         lat: sample.latitude,

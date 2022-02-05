@@ -5,6 +5,7 @@ class Sample < ApplicationRecord
   has_many :methanes
   has_many :sediments
 
+
   include PgSearch::Model
   pg_search_scope :global_search,
     against: [ :class_sample, :local_name, :equipment, :date_analysis, :date_sample ],
@@ -14,4 +15,5 @@ class Sample < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
 end
