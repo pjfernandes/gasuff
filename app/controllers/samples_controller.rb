@@ -58,7 +58,16 @@ class SamplesController < ApplicationController
     redirect_to sample_path(@sample)
   end
 
+  def export
+    @samples = Sample.all
 
+    respond_to do |format|
+      format.csv do
+        response.headers['Content-Type'] = 'text/csv'
+        response.headers['Content-Disposition'] = "attachment; filename=samples.csv"
+      end
+    end
+  end
 
   private
   def sample_params

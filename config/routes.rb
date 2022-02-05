@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :methanes
   resources :sediments
 
+  get 'export', to: 'samples#export'
+
   resources :researchers do
     resources :samples
   end

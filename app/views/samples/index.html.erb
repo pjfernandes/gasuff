@@ -6,14 +6,6 @@
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
-<% headers = ['Name', 'Email'] %>
-<% CSV.generate_line headers %>
-<% @samples.each do |sample| %>
-  <% CSV.generate_line([sample.id, sample.type]) %>
-<% end %>
-
-<%= link_to 'Download CSV list', samples_path(format: :csv) %>
-
 <div class="form text-center mt-3">
   <%= form_tag samples_path, method: :get do %>
     <%= text_field_tag :query,
