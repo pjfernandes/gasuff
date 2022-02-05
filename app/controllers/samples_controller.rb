@@ -1,9 +1,11 @@
+require 'csv'
+
 class SamplesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     if params[:query].present?
-      @samples = Sample.global_search(params[:query]).includes(:researcher).page(params[:page])
+      @samples = Sample.global_search(params[:query]).includes(:researcher).page(params[:page]).per(30)
     else
       @samples = Sample.includes(:researcher).page(params[:page]).per(30)
     end
@@ -55,6 +57,8 @@ class SamplesController < ApplicationController
     @sample.update(sample_params)
     redirect_to sample_path(@sample)
   end
+
+
 
   private
   def sample_params
