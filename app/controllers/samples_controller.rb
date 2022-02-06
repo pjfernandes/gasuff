@@ -1,21 +1,31 @@
-require 'csv'
-
 class SamplesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     if params[:query].present?
       @samples = Sample.global_search(params[:query]).includes(:researcher).page(params[:page]).per(30)
+      @samples_for_export = Sample.global_search(params[:query]).includes(:researcher)
     else
       @samples = Sample.includes(:researcher).page(params[:page]).per(30)
+      @samples_for_export = Sample.includes(:researcher)
     end
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @samples_for_export.to_csv, filename: "samples.csv" }
+    end
+
+
     @markers = @samples.map do |sample|
       {
         lat: sample.latitude,
         lng: sample.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { sample: sample })
+        #info_window: render_to_string(partial: "info_window", locals: { sample: sample })
       }
     end
+
+
+
   end
 
   def show

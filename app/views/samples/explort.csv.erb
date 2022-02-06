@@ -1,7 +1,0 @@
-<%- headers = ['Email', 'Date'] -%>
-<% CSV.generate_line headers %>
-<%- @samples.each do |sample| -%>
-  <% CSV.generate_line([sample.id, sample.type]) -%>
-<%- end -%>
-
-<a href="/samples/export.csv">Export CSV</a>
