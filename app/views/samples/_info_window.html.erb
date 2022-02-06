@@ -1,3 +1,5 @@
+<% @samples.map do |sample|%>
+
 <div class="border-bottom">
   <p class="text-center text-dark"><strong><i class="fas fa-info-circle text-primary"></i> <%= link_to "Detalhes", sample_path(sample) %></strong></p>
 </div>
@@ -6,3 +8,4 @@
   <p><i class="page-title fas fa-vial text-primary"></i> <strong>Tipo:</strong> <%=sample.class_sample%></p>
   <p><i class="page-title fas fa-user-graduate text-primary"></i> <strong>Pesquisador:</strong> <%=sample.researcher.first_name.capitalize%> <%=sample.researcher.last_name.capitalize%></p>
 </div>
+<%end%>

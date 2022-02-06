@@ -5,26 +5,33 @@ class SamplesController < ApplicationController
     if params[:query].present?
       @samples = Sample.global_search(params[:query]).includes(:researcher).page(params[:page]).per(30)
       @samples_for_export = Sample.global_search(params[:query]).includes(:researcher)
+      respond_to do |format|
+        format.html
+        format.csv { send_data @samples_for_export.to_csv, filename: "samples.csv" }
+      end
     else
       @samples = Sample.includes(:researcher).page(params[:page]).per(30)
       @samples_for_export = Sample.includes(:researcher)
+      respond_to do |format|
+        format.html
+        format.csv { send_data @samples_for_export.to_csv, filename: "samples.csv" }
+      end
     end
-
-    respond_to do |format|
-      format.html
-      format.csv { send_data @samples_for_export.to_csv, filename: "samples.csv" }
-    end
-
 
     @markers = @samples.map do |sample|
       {
         lat: sample.latitude,
         lng: sample.longitude,
-        #info_window: render_to_string(partial: "info_window", locals: { sample: sample })
+        info_window: "<div class='border-bottom'>
+                      <p class='text-center text-dark'><strong><i class='fas fa-info-circle text-primary'></i> <a href='#{sample_path(sample)}'> Detalhes</strong></p>
+                    </div>
+                    <div class='text-left text-dark mt-2'>
+                      <p><i class='page-title fas fa-calendar text-primary'></i> <strong>Data:</strong> #{sample.date_sample}</p>
+                      <p><i class='page-title fas fa-vial text-primary'></i> <strong>Tipo:</strong> #{sample.class_sample}</p>
+                      <p><i class='page-title fas fa-user-graduate text-primary'></i> <strong>Pesquisador:</strong> #{sample.researcher.first_name.capitalize} #{sample.researcher.last_name.capitalize}</p>
+                    </div>"
       }
     end
-
-
 
   end
 
