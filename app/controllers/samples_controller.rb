@@ -13,9 +13,9 @@ class SamplesController < ApplicationController
     @samples_for_export = @samples
 
     respond_to do |format|
-      format.html
-      #format.csv { send_data @samples_for_export.to_csv, filename: "samples.csv" }
-      format.csv { send_data to_csv(@samples_for_export), filename: "samples.csv" }
+      format.html #{ @samples_for_export }
+      format.csv { send_data Sample.to_csv(@samples_for_export), filename: "samples.csv" }
+      #format.csv { send_data to_csv(@samples_for_export), filename: "samples.csv" }
     end
 
     @markers = @samples_for_pages.map do |sample|
@@ -83,14 +83,14 @@ class SamplesController < ApplicationController
     )
   end
 
-  def to_csv(samples_for_export)
-    CSV.generate(headers: true, col_sep: ";") do |csv|
-      csv << ["longitude", "latitude", "class_sample"]
-      samples_for_export.each do |sample|
-        row = [sample.longitude, sample.latitude, sample.class_sample]
-        csv << row
-      end
-    end
-  end
+  # def to_csv(samples_for_export)
+  #   CSV.generate(headers: true, col_sep: ";") do |csv|
+  #     csv << ["longitude", "latitude", "class_sample"]
+  #     samples_for_export.each do |sample|
+  #       row = [sample.longitude, sample.latitude, sample.class_sample]
+  #       csv << row
+  #     end
+  #   end
+  # end
 
 end
