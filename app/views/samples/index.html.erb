@@ -1,5 +1,5 @@
 <h2 class="page-title text-center mt-4 mb-3"><i class="fas fa-vial text-primary"></i> Amostras</h2>
-<div class="text-dark"><%= paginate @samples, window: 2%></div>
+<div class="text-dark"><%= paginate @samples_for_pages, window: 2%></div>
 
 <div id="map"
      style="width: 100%; height: 350px;"
@@ -28,7 +28,7 @@
 
 
 <div class="samples-container">
-  <%@samples.each do |sample|%>
+  <%@samples_for_pages.each do |sample|%>
   <div class="card-product mt-3 mb-4 rounded d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
 

@@ -3,36 +3,35 @@ class SamplesController < ApplicationController
 
   def index
     if params[:query].present?
-      @samples = Sample.global_search(params[:query]).includes(:researcher).page(params[:page]).per(30)
-      @samples_for_export = Sample.global_search(params[:query]).includes(:researcher)
-      respond_to do |format|
-        format.html
-        format.csv { send_data @samples_for_export.to_csv, filename: "samples.csv" }
-      end
+      @samples = Sample.global_search(params[:query]).includes(:researcher)
+      @samples_for_pages = @samples.page(params[:page]).per(30)
     else
-      @samples = Sample.includes(:researcher).page(params[:page]).per(30)
-      @samples_for_export = Sample.includes(:researcher)
-      respond_to do |format|
-        format.html
-        format.csv { send_data @samples_for_export.to_csv, filename: "samples.csv" }
-      end
+      @samples = Sample.includes(:researcher)
+      @samples_for_pages = @samples.page(params[:page]).per(30)
     end
 
-    @markers = @samples.map do |sample|
+    @samples_for_export = @samples
+
+    respond_to do |format|
+      format.html
+      #format.csv { send_data @samples_for_export.to_csv, filename: "samples.csv" }
+      format.csv { send_data to_csv(@samples_for_export), filename: "samples.csv" }
+    end
+
+    @markers = @samples_for_pages.map do |sample|
       {
         lat: sample.latitude,
         lng: sample.longitude,
         info_window: "<div class='border-bottom'>
-                      <p class='text-center text-dark'><strong><i class='fas fa-info-circle text-primary'></i> <a href='#{sample_path(sample)}'> Detalhes</strong></p>
-                    </div>
-                    <div class='text-left text-dark mt-2'>
-                      <p><i class='page-title fas fa-calendar text-primary'></i> <strong>Data:</strong> #{sample.date_sample}</p>
-                      <p><i class='page-title fas fa-vial text-primary'></i> <strong>Tipo:</strong> #{sample.class_sample}</p>
-                      <p><i class='page-title fas fa-user-graduate text-primary'></i> <strong>Pesquisador:</strong> #{sample.researcher.first_name.capitalize} #{sample.researcher.last_name.capitalize}</p>
-                    </div>"
+                        <p class='text-center text-dark'><strong><i class='fas fa-info-circle text-primary'></i> <a href='#{sample_path(sample)}'> Detalhes</strong></p>
+                      </div>
+                      <div class='text-left text-dark mt-2'>
+                        <p><i class='page-title fas fa-calendar text-primary'></i> <strong>Data:</strong> #{sample.date_sample}</p>
+                        <p><i class='page-title fas fa-vial text-primary'></i> <strong>Tipo:</strong> #{sample.class_sample}</p>
+                        <p><i class='page-title fas fa-user-graduate text-primary'></i> <strong>Pesquisador:</strong> #{sample.researcher.first_name.capitalize} #{sample.researcher.last_name.capitalize}</p>
+                      </div>"
       }
     end
-
   end
 
   def show
@@ -75,17 +74,6 @@ class SamplesController < ApplicationController
     redirect_to sample_path(@sample)
   end
 
-  def export
-    @samples = Sample.all
-
-    respond_to do |format|
-      format.csv do
-        response.headers['Content-Type'] = 'text/csv'
-        response.headers['Content-Disposition'] = "attachment; filename=samples.csv"
-      end
-    end
-  end
-
   private
   def sample_params
     params.require(:sample).permit(
@@ -94,4 +82,15 @@ class SamplesController < ApplicationController
       :p_total, :cinorg, :c_total, :calcidif, :n_total, :delta_13c, :delta_15n
     )
   end
+
+  def to_csv(samples_for_export)
+    CSV.generate(headers: true, col_sep: ";") do |csv|
+      csv << ["longitude", "latitude", "class_sample"]
+      samples_for_export.each do |sample|
+        row = [sample.longitude, sample.latitude, sample.class_sample]
+        csv << row
+      end
+    end
+  end
+
 end
