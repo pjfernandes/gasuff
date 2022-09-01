@@ -10,9 +10,45 @@
     <%= f.input :latitude, label: "Latitude" %>
     <%= f.input :longitude, label: "Longitude" %>
     <%= f.input :class_sample, label: false, input_html: { value: 'Sedimento', hidden: true } %>
+
     <%= f.association :researcher, :label_method => lambda { |researcher| "#{researcher.first_name.capitalize} #{researcher.last_name.capitalize}" }, collection: Researcher.all.order(:first_name), label: "Pesquisador" %>
     <%= f.input :date_sample, label: "Data de coleta", :order => [:day, :month, :year], as: :date %>
     <%= f.input :date_analysis, label: "Data da análise", :order => [:day, :month, :year], as: :date %>
+    <%= f.input :entry_date, label: "Data de entrada", :order => [:day, :month, :year], as: :date %>
+    <%= f.input :exit_date, label: "Data da saída", :order => [:day, :month, :year], as: :date %>
+
+
+    <div class="form-group" style="display: flex; flex-direction: row">
+      <div class="text-center"><%= f.input :sediment_co2, label: "CO2" %></div>
+      <div class="text-center mr-2 ml-2"><%= f.input :sediment_ch4, label: "CH4" %></div>
+      <div class="text-center"><%= f.input :sediment_n2o, label: "N2O" %></div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; flex-direction: row">
+      <div class="text-center w-50"><%= f.input :carbon, label: "C" %></div>
+      <div class="text-center w-50 ml-2"><%= f.input :nitrogen, label: "N" %></div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; flex-direction: row">
+      <div class="text-center w-50"><%= f.input :delta_15n, label: "Delta 15N" %></div>
+      <div class="text-center w-50 ml-2"><%= f.input :delta_13c, label: "Delta 13C" %></div>
+    </div>
+
+
+    <%= f.input :density, label: "Densidade" %>
+    <%= f.input :remineralization,  as: :select, collection: [ 'Aeróbica', 'Anaeróbica' ], :prompt => 'Selecione', label:'Remineralização' %>
+    <%= f.input :ecosystem, collection: [ 'Baía', 'Lago', 'Lagoa', 'Rio', 'Mangue', 'Oceano aberto', 'Oceano costeiro', 'Reservatório', 'Outros'], label: 'Ecossistema', :prompt => 'Selecione', class: 'form-control select required' %>
+
+    <div style="display: flex; flex-direction: row">
+      <div class="text-center"><%= f.input :sand, label: "Areia (%)"%></div>
+      <div class="text-center mr-2 ml-2"><%= f.input :silt, label: "Silte (%)" %></div>
+      <div class="text-center"><%= f.input :clay, label: "Argila (%)" %></div>
+    </div>
+
+    <%= f.input :location, label: "Localização" %>
+    <%= f.input :history, label: "Histórico",  as: :text %>
+    <%= f.input :observation, label: "Observações",  as: :text %>
+
 
     <%= f.button :submit, "Salvar", class: "btn-primary btn-sm text-center" %>
     <%= link_to 'Voltar', samples_path, class:"btn btn-secondary btn-sm mt-2 ml-2 mb-2" %>
