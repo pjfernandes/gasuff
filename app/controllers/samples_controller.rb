@@ -1,5 +1,5 @@
 class SamplesController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
+  skip_before_action :authenticate_user!, only: %i[index show new]
 
   def index
     if params[:query].present?
