@@ -43,7 +43,6 @@ class SedimentsController < ApplicationController
     params.require(:sediment).permit(
       :latitude, :longitude, :class_sample, :researcher_id, :date_sample,
       :date_analysis, :equipment, :user,
-      :p_total, :cinorg, :c_total, :calcidif, :n_total, :delta_13c, :delta_15n
     )
   end
 end

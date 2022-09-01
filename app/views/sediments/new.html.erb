@@ -1,8 +1,8 @@
 <h2 class="page-title text-center mt-4"><i class="fas fa-vial text-primary"></i> Cadastrar amostra</h2>
 
 <div class="buttons text-center">
-  <%=link_to "CO2", new_carbon_path, class: "btn btn-primary btn-sm mr-2 mt-2" %>
-  <%=link_to "CH4", new_methane_path, class: "btn btn-primary btn-sm mr-2 mt-2" %>
+  <%=link_to "Água", new_water_path, class: "btn btn-primary btn-sm mr-2 mt-2" %>
+  <%=link_to "Gás", new_gase_path, class: "btn btn-primary btn-sm mr-2 mt-2" %>
   <button type="button" class = "btn btn-secondary btn-sm mr-2 mt-2" disabled>Sedimento</button>
 </div>
 
@@ -13,16 +13,6 @@
     <%= f.association :researcher, :label_method => lambda { |researcher| "#{researcher.first_name.capitalize} #{researcher.last_name.capitalize}" }, collection: Researcher.all.order(:first_name), label: "Pesquisador" %>
     <%= f.input :date_sample, label: "Data de coleta", :order => [:day, :month, :year], as: :date %>
     <%= f.input :date_analysis, label: "Data da análise", :order => [:day, :month, :year], as: :date %>
-    <%= f.input :p_total, label: "P total" %>
-    <%= f.input :cinorg, label: "C inorg." %>
-    <%= f.input :c_total, label: "C total" %>
-    <%= f.input :calcidif, label: "Calcidif." %>
-    <%= f.input :n_total, label: "N total" %>
-    <%= f.input :delta_13c, label: "Delta 13C" %>
-    <%= f.input :delta_15n, label: "Delta 15N" %>
-    <%= f.input :n_total, label: "Pressão" %>
-    <%= f.input :method, label: "Método" %>
-    <%= f.input :equipment, label: "Equipamento" %>
 
     <%= f.button :submit, "Salvar", class: "btn-primary btn-sm text-center" %>
     <%= link_to 'Voltar', samples_path, class:"btn btn-secondary btn-sm mt-2 ml-2 mb-2" %>

@@ -34,7 +34,7 @@
     <div class="d-flex align-items-center">
 
       <div class="card-product-infos ml-3 mt-1">
-        <% if sample.type == "Carbon" || sample.type == "Methane" %>
+        <% if sample.type == "Gase" || sample.type == "Water" %>
           <h6><i class="page-title fas fa-vial text-primary"></i> Amostra <%=sample.id%> (<span class="text-primary"><%=sample.class_sample.upcase%></span>)</h6>
         <%elsif sample.type == "Sediment"%>
           <h6><i class="page-title fas fa-flask text-primary"></i> Amostra <%=sample.id%> (<span class="text-primary"><%=sample.class_sample.capitalize%></span>)</h6>

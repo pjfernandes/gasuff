@@ -1,3 +1,3 @@
-class Carbon < Sample
+class Gase < Sample
   #belongs_to :sample
 end

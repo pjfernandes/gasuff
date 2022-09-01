@@ -14,31 +14,24 @@
       <p><strong>Data da amostra:</strong> <%=@sample.date_sample%></p>
       <p><strong>Data da análise:</strong> <%=@sample.date_analysis%></p>
 
-      <p><strong>P total:</strong> <%=@sample.p_total%></p>
-      <p><strong>C total:</strong> <%=@sample.c_total%></p>
-      <p><strong>C inorg.:</strong> <%=@sample.cinorg%></p>
-      <p><strong>Calcidif.:</strong> <%=@sample.calcidif%></p>
-      <p><strong>N total:</strong> <%=@sample.n_total%></p>
-      <p><strong>Delta 13C:</strong> <%=@sample.delta_13c%></p>
-      <p><strong>Delta 15N:</strong> <%=@sample.delta_15n%></p>
-
-      <p><strong>Equipamento:</strong> <%=@sample.equipment%></p>
       <p><strong>Pesquisador:</strong> <%=@sample.researcher.first_name.capitalize%> <%=@sample.researcher.last_name.capitalize%></p>
   <%end%>
 
-  <% if @sample.type == "Carbon" || @sample.type == "Methane" %>
+  <% if @sample.type == "Water" %>
     <div class="text-center mt-4">
       <p><strong>Lat/long:</strong> <%=@sample.latitude%>, <%=@sample.longitude%></p>
       <p><strong>Data da amostra:</strong> <%=@sample.date_sample%></p>
       <p><strong>Data da análise:</strong> <%=@sample.date_analysis%></p>
 
-      <p><strong>Concentração:</strong> <%=@sample.concentration%></p>
-      <p><strong>pH:</strong> <%=@sample.ph%></p>
-      <p><strong>Temperatura (°C):</strong> <%=@sample.temperature%></p>
-      <p><strong>Salinidade:</strong> <%=@sample.salinity%></p>
-      <p><strong>Pressão:</strong> <%=@sample.pressure%></p>
+      <p><strong>Pesquisador:</strong> <%=@sample.researcher.first_name.capitalize%> <%=@sample.researcher.last_name.capitalize%></p>
+  <%end%>
 
-      <p><strong>Equipamento:</strong> <%=@sample.equipment%></p>
+  <% if @sample.type == "Gase" %>
+    <div class="text-center mt-4">
+      <p><strong>Lat/long:</strong> <%=@sample.latitude%>, <%=@sample.longitude%></p>
+      <p><strong>Data da amostra:</strong> <%=@sample.date_sample%></p>
+      <p><strong>Data da análise:</strong> <%=@sample.date_analysis%></p>
+
       <p><strong>Pesquisador:</strong> <%=@sample.researcher.first_name.capitalize%> <%=@sample.researcher.last_name.capitalize%></p>
   <%end%>
 

@@ -10,35 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_07_165041) do
+ActiveRecord::Schema.define(version: 2022_09_01_194425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "carbons", force: :cascade do |t|
+  create_table "gases", force: :cascade do |t|
     t.bigint "sample_id", null: false
-    t.float "concentration"
-    t.float "ph"
-    t.float "temperature"
-    t.float "salinity"
-    t.float "pressure"
-    t.string "method"
+    t.string "gas_type"
+    t.string "chamber_type"
+    t.float "gase_co2"
+    t.float "gase_ch4"
+    t.float "gase_n2o"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["sample_id"], name: "index_carbons_on_sample_id"
-  end
-
-  create_table "methanes", force: :cascade do |t|
-    t.bigint "sample_id", null: false
-    t.float "concentration"
-    t.float "ph"
-    t.float "temperature"
-    t.float "salinity"
-    t.float "pressure"
-    t.string "method"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["sample_id"], name: "index_methanes_on_sample_id"
+    t.index ["sample_id"], name: "index_gases_on_sample_id"
   end
 
   create_table "researchers", force: :cascade do |t|
@@ -57,27 +43,40 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
   create_table "samples", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "researcher_id", null: false
-    t.string "class_sample"
+    t.string "type"
     t.float "latitude"
     t.float "longitude"
     t.date "date_sample"
     t.date "date_analysis"
-    t.string "equipment"
-    t.string "local_name"
-    t.string "type"
-    t.float "concentration"
-    t.float "ph"
-    t.float "temperature"
-    t.float "salinity"
-    t.float "pressure"
-    t.string "method"
-    t.float "p_total"
-    t.float "cinorg"
-    t.float "c_total"
-    t.float "calcidif"
-    t.float "n_total"
+    t.date "entry_date"
+    t.date "exit_date"
+    t.string "location"
+    t.string "history"
+    t.string "cod_sample"
+    t.string "observation"
+    t.string "class_sample"
+    t.string "remineralization"
+    t.string "ecosystem"
+    t.float "sediment_co2"
+    t.float "sediment_ch4"
+    t.float "sediment_n2o"
+    t.float "carbon"
+    t.float "nitrogen"
+    t.float "sand"
+    t.float "silt"
+    t.float "clay"
     t.float "delta_13c"
     t.float "delta_15n"
+    t.float "density"
+    t.string "water_type"
+    t.float "water_co2"
+    t.float "water_ch4"
+    t.float "water_n2o"
+    t.string "gas_type"
+    t.string "chamber_type"
+    t.float "gase_co2"
+    t.float "gase_ch4"
+    t.float "gase_n2o"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["researcher_id"], name: "index_samples_on_researcher_id"
@@ -86,14 +85,19 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
 
   create_table "sediments", force: :cascade do |t|
     t.bigint "sample_id", null: false
-    t.float "p_total"
-    t.float "cinorg"
-    t.float "c_total"
-    t.float "calcidif"
-    t.float "n_total"
+    t.string "remineralization"
+    t.string "ecosystem"
+    t.float "sediment_co2"
+    t.float "sediment_ch4"
+    t.float "sediment_n2o"
+    t.float "carbon"
+    t.float "nitrogen"
+    t.float "sand"
+    t.float "silt"
+    t.float "clay"
     t.float "delta_13c"
     t.float "delta_15n"
-    t.string "method"
+    t.float "density"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["sample_id"], name: "index_sediments_on_sample_id"
@@ -114,9 +118,20 @@ ActiveRecord::Schema.define(version: 2022_01_07_165041) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "carbons", "samples"
-  add_foreign_key "methanes", "samples"
+  create_table "waters", force: :cascade do |t|
+    t.bigint "sample_id", null: false
+    t.string "water_type"
+    t.float "water_co2"
+    t.float "water_ch4"
+    t.float "water_n2o"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sample_id"], name: "index_waters_on_sample_id"
+  end
+
+  add_foreign_key "gases", "samples"
   add_foreign_key "samples", "researchers"
   add_foreign_key "samples", "users"
   add_foreign_key "sediments", "samples"
+  add_foreign_key "waters", "samples"
 end
