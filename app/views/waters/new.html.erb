@@ -19,6 +19,8 @@
       <div class="text-center w-50"><%= f.input :latitude, label: "Latitude", required: true, class: "sample_latitude" %> </div>
       <div class="text-center w-50 ml-2"><%= f.input :longitude, label: "Longitude", required: true, class: "sample_longitude" %></div>
     </div>
+      <%= f.input :ecosystem, collection: [ ['Baía', 'baia'], ['Lago', 'lago'], ['Lagoa','lagoa'], ['Rio','rio'], ['Mangue', 'mangue'], ['Oceano aberto','oceano_aberto'], ['Oceano costeiro','oceano_costeiro'], ['Reservatório','reservatorio'], ['Outros', 'outros']], label: 'Ecossistema', :prompt => 'Selecione', class: 'form-control select required' %>
+
       <%= f.input :class_sample, label: false, input_html: { value: 'Agua', hidden: true } %>
 
       <%= f.association :researcher, :label_method => lambda { |researcher| "#{researcher.first_name.capitalize} #{researcher.last_name.capitalize}" }, collection: Researcher.all.order(:first_name), label: "Pesquisador" %>

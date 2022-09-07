@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 2022_09_01_194425) do
   create_table "sediments", force: :cascade do |t|
     t.bigint "sample_id", null: false
     t.string "remineralization"
-    t.string "ecosystem"
     t.float "sediment_co2"
     t.float "sediment_ch4"
     t.float "sediment_n2o"

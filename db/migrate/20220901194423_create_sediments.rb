@@ -3,7 +3,7 @@ class CreateSediments < ActiveRecord::Migration[6.0]
     create_table :sediments do |t|
       t.references :sample, null: false, foreign_key: true
       t.string :remineralization
-      t.string :ecosystem
+      #t.string :ecosystem
       t.float :sediment_co2
       t.float :sediment_ch4
       t.float :sediment_n2o

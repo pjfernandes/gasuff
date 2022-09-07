@@ -41,8 +41,31 @@ class SedimentsController < ApplicationController
   private
   def sediment_params
     params.require(:sediment).permit(
-      :latitude, :longitude, :class_sample, :researcher_id, :date_sample,
-      :date_analysis, :equipment, :user,
+      :latitude,
+      :longitude,
+      :ecosystem,
+      :class_sample,
+      :researcher_id,
+      :date_sample,
+      :date_analysis,
+      :entry_date,
+      :history,
+      :location,
+      :cod_sample,
+      :observation,
+      :remineralization,
+      :sediment_co2,
+      :sediment_ch4,
+      :sediment_n2o,
+      :carbon,
+      :nitrogen,
+      :sand,
+      :silt,
+      :clay,
+      :delta_13c,
+      :delta_15_n,
+      :density,
+      :user
     )
   end
 end
