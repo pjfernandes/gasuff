@@ -1,8 +1,5 @@
-<% if @sample.type == "Carbon" || @sample.type == "Methane" %>
-  <h2 class="page-title text-center mt-4 mb-4"><i class="fas fa-vial text-primary"></i> Amostra <%=@sample.id%> (<span class="text-primary"><%=@sample.class_sample.upcase%></span>) </h2>
-<% elsif @sample.type == "Sediment" %>
-    <h2 class="page-title text-center mt-4 mb-4"><i class="fas fa-vial text-primary"></i> Amostra <%=@sample.id%> (<span class="text-primary"><%=@sample.class_sample.capitalize%></span>) </h2>
-<%end%>
+<h2 class="text-center mt-3">Detalhes</h2>
+
 <div id="map"
      style="width: 100%; height: 300px;"
      data-markers="<%= @markers.to_json %>"
@@ -35,5 +32,13 @@
       <p><strong>Pesquisador:</strong> <%=@sample.researcher.first_name.capitalize%> <%=@sample.researcher.last_name.capitalize%></p>
   <%end%>
 
-  <%=link_to "Voltar", :back, class: "btn btn-secondary btn-sm text-center"%>
+  <% if @sample.type == "Sediment" %>
+    <%=link_to "Editar", edit_sediment_path, class: "btn btn-primary btn-sm text-center"%>
+  <% elsif @sample.type == "Gase"%>
+    <%=link_to "Editar", edit_gase_path, class: "btn btn-primary btn-sm text-center"%>
+  <% else %>
+    <%=link_to "Editar", edit_water_path, class: "btn btn-primary btn-sm text-center"%>
+  <% end %>
+  <%=link_to "Deletar", "#", class: "btn btn-danger btn-sm text-center"%>
+  <%=link_to "Voltar", samples_path, class: "btn btn-secondary btn-sm text-center"%>
 </div>

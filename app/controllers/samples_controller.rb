@@ -77,20 +77,42 @@ class SamplesController < ApplicationController
   private
   def sample_params
     params.require(:sample).permit(
-      :latitude, :longitude, :class_sample, :researcher_id, :date_sample,
-      :date_analysis, :equipment, :user, :concentration, :ph, :temperature, :salinity,
-      :p_total, :cinorg, :c_total, :calcidif, :n_total, :delta_13c, :delta_15n
+    :user_id,
+    :researcher_id,
+    :type,
+    :latitude,
+    :longitude,
+    :date_sample,
+    :date_analysis,
+    :entry_date,
+    :exit_date,
+    :location,
+    :history,
+    :cod_sample,
+    :observation,
+    :class_sample,
+    :remineralization,
+    :ecosystem,
+    :sediment_co2,
+    :sediment_ch4,
+    :sediment_n2o,
+    :carbon,
+    :nitrogen,
+    :sand,
+    :silt,
+    :clay,
+    :delta_13c,
+    :delta_15n,
+    :density,
+    :water_type,
+    :water_co2,
+    :water_ch4,
+    :water_n2o,
+    :gas_type,
+    :chamber_type,
+    :gase_co2,
+    :gase_ch4,
+    :gase_n2o
     )
   end
-
-  # def to_csv(samples_for_export)
-  #   CSV.generate(headers: true, col_sep: ";") do |csv|
-  #     csv << ["longitude", "latitude", "class_sample"]
-  #     samples_for_export.each do |sample|
-  #       row = [sample.longitude, sample.latitude, sample.class_sample]
-  #       csv << row
-  #     end
-  #   end
-  # end
-
 end

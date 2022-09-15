@@ -1,4 +1,4 @@
-<h2 class="page-title text-center mt-4"><i class="fas fa-vial text-primary"></i> Cadastrar amostra</h2>
+<h2 class="page-title text-center mt-4"><i class="fas fa-vial text-primary"></i> Amostra (<span class="text-success">gás</span>)</h2>
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet'/>
@@ -8,9 +8,9 @@
 
 
 <div class="buttons text-center mb-3">
-  <%=link_to "Água", new_water_path, class: "btn btn-primary btn-sm mr-2 mt-2" %>
+  <%=link_to "Água", new_water_path, class: "btn btn-info btn-sm mr-2 mt-2" %>
   <button type="button" class = "btn btn-secondary btn-sm mr-2 mt-2" disabled>Gás</button>
-  <%=link_to "Sedimento", new_sediment_path, class: "btn btn-primary btn-sm mr-2 mt-2" %>
+  <%=link_to "Sedimento", new_sediment_path, class: "btn btn-warning btn-sm mr-2 mt-2" %>
 </div>
 
 <div id="new-form">
@@ -19,27 +19,26 @@
       <div class="text-center w-50"><%= f.input :latitude, label: "Latitude", required: true, class: "sample_latitude" %> </div>
       <div class="text-center w-50 ml-2"><%= f.input :longitude, label: "Longitude", required: true, class: "sample_longitude" %></div>
     </div>
-      <%= f.input :ecosystem, collection: [ ['Baía', 'baia'], ['Lago', 'lago'], ['Lagoa','lagoa'], ['Rio','rio'], ['Mangue', 'mangue'], ['Oceano aberto','oceano_aberto'], ['Oceano costeiro','oceano_costeiro'], ['Reservatório','reservatorio'], ['Outros', 'outros']], label: 'Ecossistema', :prompt => 'Selecione', class: 'form-control select required' %>
+      <%= f.input :ecosystem, collection: [ ['Baía', 'baia'], ['Lago', 'lago'], ['Lagoa','lagoa'], ['Rio','rio'], ['Mangue', 'mangue'], ['Oceano aberto','oceano_aberto'], ['Oceano costeiro','oceano_costeiro'], ['Reservatório','reservatorio'], ['Outros', 'outros']], label: 'Ecossistema', :prompt => 'Selecione', class: 'form-control select required', required: true %>
       <%= f.input :class_sample, label: false, input_html: { value: 'Gas', hidden: true } %>
 
       <%= f.association :researcher, :label_method => lambda { |researcher| "#{researcher.first_name.capitalize} #{researcher.last_name.capitalize}" }, collection: Researcher.all.order(:first_name), label: "Pesquisador" %>
       <%= f.input :date_sample, label: "Data de coleta", :order => [:day, :month, :year], as: :date, required: true %>
-      <%= f.input :entry_date, label: "Data de entrada", :order => [:day, :month, :year], as: :date, required: true %>
-      <%= f.input :date_analysis, label: "Data da análise", :order => [:day, :month, :year], as: :date, required: true %>
+      <%= f.input :entry_date, label: "Data de entrada", :order => [:day, :month, :year], as: :date %>
+      <%= f.input :date_analysis, label: "Data da análise", :order => [:day, :month, :year], as: :date %>
+
+      <%= f.input :gas_type,  as: :select, collection: [['CO2', 'co2'], ['CH4', 'ch4'], ['NO2', 'no2'], ['Gases ambientais', 'gases ambientais'], ['Biogás', 'biogas']], :prompt => 'Selecione', label:'Tipo de gás', required: true %>
+      <%= f.input :chamber_type,  as: :select, collection:  [['Amostras atmosféricas', 'amostras atmosfericas'], ['Câmara de solo', 'solo'], ['Câmara sobre as águas', 'camara sobre as aguas'], ['Câmara de macrófitas', 'macrofitas'], ['Aquáticas', 'aquaticas'], ['Amostras de headspace', 'headspace']], :prompt => 'Selecione', label:'Câmara' %>
 
       <div class="form-group" style="display: flex; flex-direction: row">
         <div class="text-center"><%= f.input :gase_co2, label: "CO2" %></div>
         <div class="text-center mr-2 ml-2"><%= f.input :gase_ch4, label: "CH4" %></div>
-        <div class="text-center"><%= f.input :gase_n2o, label: "N2O" %></div>
+        <div class="text-center"><%= f.input :gase_n2o, label: "NO2" %></div>
       </div>
-
-      <%= f.input :gas_type,  as: :select, collection: [ 'Doce', 'Salgada' ], :prompt => 'Selecione', label:'Tipo de gás', required: true %>
-      <%= f.input :chamber_type,  as: :select, collection: [ 'Doce', 'Salgada' ], :prompt => 'Selecione', label:'Câmara', required: true %>
 
       <%= f.input :location, label: "Localização" %>
       <%= f.input :history, label: "Histórico",  as: :text %>
       <%= f.input :observation, label: "Observações",  as: :text %>
-
 
       <%= f.button :submit, "Salvar", class: "btn-primary btn-sm text-center" %>
       <%= link_to 'Voltar', samples_path, class:"btn btn-secondary btn-sm mt-2 ml-2 mb-2" %>

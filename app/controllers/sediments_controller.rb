@@ -24,18 +24,18 @@ class SedimentsController < ApplicationController
   end
 
   def edit
-    if current_user.admin?
+    #if current_user.admin?
       @sediment = Sediment.find(params[:id])
-    else
-      redirect_to sediment_path(@sediment)
-    end
+    #else
+      #redirect_to sample_path(@sediment)
+    #end
   end
 
   def update
     @sediment = Sediment.find(params[:id])
     @sediment.user = current_user
     @sediment.update(sediment_params)
-    redirect_to sediment_path(@sediment)
+    redirect_to sample_path(@sediment)
   end
 
   private

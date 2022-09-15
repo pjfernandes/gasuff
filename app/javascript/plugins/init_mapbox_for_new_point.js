@@ -4,17 +4,8 @@ function buildMapNewPoint() {
   var coords;
 
   if (document.querySelector(".map-edit-point")) {
-    if (document.querySelector("#sediment_latitude")) {
-      const latitude = parseFloat(document.querySelector("#sediment_latitude").value);
-      const longitude = parseFloat(document.querySelector("#sediment_longitude").value);
-    }  else if (document.querySelector("#water_latitude")) {
-      const latitude = parseFloat(document.querySelector("#water_latitude").value);
-      const longitude = parseFloat(document.querySelector("#water_longitude").value);
-    } else if (document.querySelector("#water_latitude")) {
-      const latitude = parseFloat(document.querySelector("#gase_latitude").value);
-      const longitude = parseFloat(document.querySelector("#gase_longitude").value);
-    }
-
+    const latitude = parseFloat(document.querySelector("input[id*='latitude']").value);
+    const longitude = parseFloat(document.querySelector("input[id*='longitude']").value);
     coords = [longitude, latitude];
   } else {
     coords = [-56, -15];
@@ -36,7 +27,7 @@ function buildMapNewPoint() {
     var marker = new mapboxgl.Marker();
     marker
       .setLngLat(coords)
-      //.addTo(map);
+      .addTo(map);
 
     function add_marker(event) {
       marker.remove()
